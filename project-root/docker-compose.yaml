@@ -1,1 +1,32 @@
+version: '3.8'
 
+services:
+  user-service:
+    build: 
+      context: ./services/user
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@postgres:5432/users
+      - NODE_ENV=development
+      - PORT=3000
+    depends_on:
+      - postgres
+    volumes:
+      - ./services/user:/usr/src/app
+      - /usr/src/app/node_modules
+
+  postgres:
+    image: postgres:14-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=users
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
