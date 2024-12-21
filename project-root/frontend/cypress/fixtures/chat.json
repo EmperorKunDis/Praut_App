@@ -1,0 +1,10 @@
+{
+    "messages": [
+      {
+        "id": "1",
+        "content": "Test message 1",
+        "sender": "user1",
+        "timestamp": "2024-12-21T12:00:00Z"
+      }
+    ]
+}

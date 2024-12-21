@@ -2,14 +2,14 @@ FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
-# Install build dependencies for bcrypt
+# Install build dependencies for argon2
 RUN apk add --no-cache make gcc g++ python3
 
 COPY package*.json ./
 
 # Install dependencies
 RUN npm install
-RUN npm rebuild bcrypt --build-from-source
+RUN npm rebuild argon2 --build-from-source
 
 COPY . .
 
